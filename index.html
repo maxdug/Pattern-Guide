@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <!--  Meta  -->
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="description" content="A code / pattern reference">
+  <title>Pattern Guide</title>
+  
+<link rel="stylesheet" href="styles/index.processed.css">
+</head>
+<body>
+  
+<div include-html="header.html"></div>
+
+
+
+
+<div class="article-container space">
+  <div class="full">
+	<h1 id="top">Pattern Guide</h1>
+	<p>This is my attempt to have a one page reference point for all the front end code and design desisions I make during the course of my work. This page is meant to be viewed both in the browser and in code. You can view the <a target="_blank" href="/styles/index.processed.css">CSS here.</a>
+  </div>
+  <div class="half">
+	<h3>Goals</h3>
+	<ul>
+		<li>Fast Refernece</li>
+		<li>Example Code</li>
+		<li>UI Decisions & Reasoning</li>
+	</ul>
+  </div><!-- End Half -->
+  
+  <div class="half">
+    <h3>Naming Convention</h3>
+    <p>My naming convention is based off of BEM - Block, Element, &amp; Modifier. Names should be as short as possible &amp; long as needed.
+  </div><!-- End half -->
+  
+  <div class="third">
+    <h4>Block</h4>
+    <p>Standalone entity that is meaningful on its own.
+    <h5>Examples</h4>
+    <h6>header, container, menu, checkbox, input, full, half</h5>
+  </div>
+  <div class="third">
+    <h4>Element</h4>
+    <p>A part of a block that has no standalone meaning and is semantically tied to its block.
+    <h5>Examples</h4>
+    <h6>menu item, list item, checkbox caption, header title</h5>
+  </div>
+  <div class="third">
+    <h4>Modifier</h4>
+    <p>A flag on a block or element. Use them to change appearance or behavior.
+    <h5>Examples</h4>
+    <h6>disabled, highlighted, checked, fixed, size big, color yellow</h5>
+  </div>
+
+
+<!-----------------------------------------------------------------------------------------------------------------
+
+  88""Yb     88""Yb     888888        db        88  dP     88""Yb      dP"Yb      88     88b 88     888888     .dP"Y8
+  88__dP     88__dP     88__         dPYb       88odP      88__dP     dP   Yb     88     88Yb88       88       `Ybo."
+  88""Yb     88"Yb      88""        dP__Yb      88"Yb      88"""      Yb   dP     88     88 Y88       88       o.`Y8b
+  88oodP     88  Yb     888888     dP""""Yb     88  Yb     88          YbodP      88     88  Y8       88       8bodP'
+
+                                                                                                                -->
+<div class="full">
+	<h2 id="breakpoints">Breakpoints</h2>
+	<p>My goal with breakpoints is consider the full spectrum of viewports and be device agnostic. The system should be based on widths that match natural ui pattern changes.</p>
+	<h3>Breakpoints based on:</h3>
+	<ol>
+	  <li>Most common browser resolutions</li>
+	  <li>Natural widths for common visual patterns to adjust at</li>
+	  <li>Room for error / Browser windows not matching device resolution</li>
+	</ol>
+  <p>*Breakpoints used
+  <p>Based on stats from <a target="external" href="https://gs.statcounter.com/screen-resolution-stats">statcounter</a>
+
+	<div class="table">
+		<div class="col">
+			<div class="th highlight">320 min -></div>
+			<div class="td">Smallest Breakpoint Supported</div>
+		</div>
+		<div class="col">
+			<div class="th highlight">- 360 -</div>
+			<div class="td">most common</div>
+		</div>
+		<div class="col">
+			<div class="th highlight">- 375 -</div>
+			<div class="td">4th Most Common</div>
+		</div>
+		<div class="col">
+			<div class="th highlight"><- 600* max</div>
+			<div class="td">Top of Mobile Breakpoint</div>
+		</div>
+		<div class="col">
+			<div class="th primary">768</div>
+			<div class="td">7th Most Common</div>
+		</div>
+		<div class="col">
+			<div class="th primary">980*</div>
+			<div class="td">Top of Tablet Breakpoint</div>
+		</div>
+		<div class="col">
+			<div class="th secondary">1366</div>
+			<div class="td">2nd most common</div>
+		</div>
+		<div class="col">
+			<div class="th secondary">1440*</div>
+			<div class="td">5th most common</div>
+			<div class="td">Max Width for standard content</div>
+			<div class="td">users struggle to keep everything in view beyond this</div>
+		</div>
+		<div class="col">
+			<div class="th secondary">1920</div>
+			<div class="td">3rd most common</div>
+		</div>
+	</div><!-- End of Table Container -->
+    
+</div><!-- End Full -->
+  
+  
+  
+  
+<!-------------------------------------------------------------------------------
+                                                                                  
+88        db    Yb  dP  dP"Yb  88   88 888888 
+88       dPYb    YbdP  dP   Yb 88   88   88   
+88  .o  dP__Yb    8P   Yb   dP Y8   8P   88   
+88ood8 dP""""Yb  dP     YbodP  `YbodP'   88     
+                                                                                  
+------------------------------------------------------------------------------->
+  
+  <div class="full">
+  <h2>Layout</h2>
+  <p>My layout system uses:
+  </div>
+  
+  <div class="third">
+  <h4>3 container sizes</h4>
+    <ul>
+      <li>Body Container
+        <ul>
+          <li>100%
+        </ul>
+      <li>Content Container
+        <ul>
+          <li>Max Width: 1440px
+        </ul>
+      <li>Article Container
+        <ul>
+          <li>Max Width: 720px
+        </ul>
+    </ul>
+    </div>
+    <div class="third">
+      <h4>10 column sizes</h4>
+    <ul>
+      <li>sixth - 16.66%
+      <li>fifth - 20%
+      <li>fourth - 25%
+      <li>third - 33.33%
+      <li>half - 50%
+      <li>two-third - 66.66%
+      <li>three-fourth - 75%
+      <li>four-fifth - 80%
+      <li>five-sixth - 83.33%
+      <li>full - 100%
+    </ul>
+    </div>
+      <div class="third">
+  <h4>4 spacing options</h4>
+    <p>Applied to the container divs
+    <ul>
+      <li>default - no space
+      <li>space-s
+        <ul>
+          <li>Margin: .1em
+          <li>Padding: .2em
+        </ul>
+      <li>space
+        <ul>
+          <li>Margin: .5em
+          <li>Padding: 1em
+        </ul>
+      <li>space-l
+        <ul>
+          <li>Margin: 1em
+          <li>Padding: 2em
+        </ul>
+    </ul> 
+    </div>
+</div><!-- End Article Container -->
+  
+<div class="body-container space">
+  <div class="full bg-light">
+    <h3>Full column in Body Container with spacing</h3>
+    <p>This can be as wide as the viewport
+    <p><code>
+&lt;div class="body-container space">
+  &lt;div class="full bg-light">
+  &lt;/div>
+&lt;/div>
+    </code>
+  </div><!-- End Full -->
+</div><!-- End Body Container -->
+  
+<div class="content-container space">
+  <div class="full bg-light">
+    <h3>Full column in Content Container with spacing</h3>
+    <p>This is a 1440px max container
+    <p><code>
+&lt;div class="content-container space">
+  &lt;div class="full bg-light">
+  &lt;/div>
+&lt;/div>
+      </code>
+  </div>
+</div><!-- End Content Container -->
+  
+<div class="article-container space">
+  <div class="full bg-light">
+    <h3>Full column in Article Container with spacing</h3>
+    <p>This container is 720 max width It is used for content that should be easy to read and browse. 640px or 40em max width. This is done to increase legibility by limiting 16px text to about 60 characters wide. Here is the wiki on <a href="https://en.wikipedia.org/wiki/Line_length#Electronic_text">line length</a>
+    <p><code>
+&lt;div class="article-container space">
+  &lt;div class="full bg-light">
+  &lt;/div>
+&lt;/div>
+      </code>
+  </div><!-- End Full -->
+</div><!-- End Article Container -->
+
+<div class="article-container space-s">
+  <div class="full bg-light">
+    <h3>Full Small space Light</h3>
+    <p><code>
+&lt;div class="full bg-light">&lt;/div>
+       </code>
+  </div>
+  <div class="sixth bg-light">
+    <h3>Sixth Small space Light</h3>
+    <p><code>
+&lt;div class="sixth bg-light">&lt;/div>
+       </code>
+  </div>
+  <div class="five-sixth bg-light">
+    <h3>five Sixth Small space Light</h3>
+    <p><code>
+&lt;div class="five-sixth bg-light">&lt;/div>
+       </code>
+  </div>
+</div><!-- End Article Container -->
+  
+<div class="article-container space">
+  
+<!-------------------------------------------------------------------------------
+                                                                                  
+88b 88    db    Yb    dP 88  dP""b8    db    888888 88  dP"Yb  88b 88 
+88Yb88   dPYb    Yb  dP  88 dP   `"   dPYb     88   88 dP   Yb 88Yb88 
+88 Y88  dP__Yb    YbdP   88 Yb  "88  dP__Yb    88   88 Yb   dP 88 Y88 
+88  Y8 dP""""Yb    YP    88  YboodP dP""""Yb   88   88  YbodP  88  Y8 
+                                                                  
+------------------------------------------------------------------------------->
+  
+  <div class="full">
+  <h2>Navigation</h2>
+  <p>Navigation message goes here
+  </div>
+
+
+<!-----------------------------------------------------------------------------------
+
+	88""Yb        db        .dP"Y8     888888     88         88     88b 88     888888
+	88__dP       dPYb       `Ybo."     88__       88         88     88Yb88     88__
+	88""Yb      dP__Yb      o.`Y8b     88""       88  .o     88     88 Y88     88""
+	88oodP     dP""""Yb     8bodP'     888888     88ood8     88     88  Y8     888888
+
+----------------------------------------------------------------------------------->
+  
+  
+<div class="full">
+	<h2>Baseline</h2>
+
+	<p>Vertical Spacing or a baseline grid provides a visual cadence to the Page</p>
+</div><!-- End Full -->
+
+<div class="full">
+	<div class="table">
+		<div class="col">
+			<div class="th">60px</div>
+			<div class="td">Below headers and Major sections</div>
+		</div>
+
+		<div class="col">
+			<div class="th">40px</div>
+			<div class="td">Below Page titles and Module rows</div>
+		</div>
+
+		<div class="col">
+			<div class="th">20px</div>
+			<div class="td">Below Headlines</div>
+		</div>
+
+		<div class="col">
+			<div class="th">10px</div>
+			<div class="td">Below body text</div>
+		</div>
+	</div>
+  </div><!-- End Full -->
+  
+
+<!-----------------------------------------------------------------------------------
+
+888888 Yb  dP 88""Yb 888888  dP"Yb   dP""b8 88""Yb    db    88""Yb 88  88 Yb  dP 
+  88    YbdP  88__dP 88__   dP   Yb dP   `" 88__dP   dPYb   88__dP 88  88  YbdP  
+  88     8P   88"""  88""   Yb   dP Yb  "88 88"Yb   dP__Yb  88"""  888888   8P   
+  88    dP    88     888888  YbodP   YboodP 88  Yb dP""""Yb 88     88  88  dP    
+
+------------------------------------------------------------------------------------->
+  
+<div class="full">
+  <h2 id="type">Typography</h2>
+  </div><!-- End Full -->
+  <div class="half">
+
+  <h3>Headings</h3>
+  <p>Heading are designed for Maximum differentiation between h1 - h6. This is achieved by choosing visual even font sizes and alternating bolding.
+    <p>I reccomend <a href="https://capitalizemytitle.com/" target="_blank"> AP Title Case for Titles </a>
+
+	<h1>H1 Page Title</h1>
+
+	<h2>H2 Section Title</h2>
+
+	<h3>H3 Sub Title</h3>
+
+	<h4>H4 Label</h4>
+
+	<h5>H5 Header</h5>
+
+	<h6>H6</h6>
+</div><!-- End Half -->
+<div class="half">
+  <h3>Body / Paragraph Text</h3>
+
+	<p>
+	  Paragraph / Body Text Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <a href="">Ut enim ad minim </a>veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in <b>strong velit</b> esse cillum dolore eu fugiat nulla pariatur. Excepteur <mark>sint occaecat</mark> cupidatat non proident, <em>sunt in culpa qui</em> officia deserunt mollit anim id est laborum.
+	</p>
+
+</div><!-- End Half -->
+  
+  
+
+
+
+<!-------------------------------------------------------------------
+
+   dP""b8      dP"Yb      88          dP"Yb      88""Yb     .dP"Y8
+  dP   `"     dP   Yb     88         dP   Yb     88__dP     `Ybo."
+  Yb          Yb   dP     88  .o     Yb   dP     88"Yb      o.`Y8b
+   YboodP      YbodP      88ood8      YbodP      88  Yb     8bodP'
+
+------------------------------------------------------------------->
+  
+<div class="full">
+  <h2 id="colors">Colors</h2>
+  </div><!-- End Full -->
+  
+ <div class="full">
+	<p>Colors in this UI system are created by picking a primary hue and placing it evenly along scales of saturation and value. This system naturaly create enough contrast to meet accesability standards.</p>
+
+	<h3>Color scale using HSL and HSLA</h3>
+	<ul>
+		<li>I use HSLA because it is intuative vs rgb</li>
+		<li>Hue ( a degree on the color wheel from 0 to 360. 0 is red, 120 is green, 240 is blue )</li>
+		<li>Saturation ( a percentage value; 0% means a shade of gray and 100% is the full color )</li>
+		<li>Value / Lightness ( a percentage; 0% is black, 100% is white )</li>
+		<li>Alpha / Oppacity ( a number between 0.0 fully transparent and 1.0 fully opaque )</li>
+	</ul>
+
+	<h3>Choices based on:</h3>
+	<ul>
+		<li>Heuristics ( Web Standards and Experience )</li>
+		<li>legability</li>
+		<li>Interest & Design</li>
+	</ul>
+
+	<p>For base / primary wireframe color, I use dodgerblue or a hue of 210</p>
+	<p>I belive that the 15 colors below should meet any standard use case</p>
+  <h3>Usage</h3>
+  <p>Colors can be applied to font, border, and background color by adding the following classes:
+    <ul>
+      <li>fnt-{color-name}<br>Example: <code>&lt;p class="fnt-highlight">&lt;/p></code></li>
+      <li>bdr-{color-name}<br>Example: <code>&lt;div class="bdr-medium-dark">&lt;/div></code></li>
+      <li>bg-{color-name}<br>Example: <code>&lt;span class="bg-primary">&lt;/span></code></li>
+    </ul>
+  <p>Colors can be added in the css using variables
+    <ul>
+      <li>var(--{color-name})<br>Example: <code>font-color: var(--extra-light);</code></li>
+  </ul>
+</div><!-- End Full -->
+  
+<div class="full flex-container">
+
+<div class="fourth bg-extra-light">
+	<h4>Extra Light</h4>
+  <p>Body Background
+  <p>hsl(var(--hue), 40%, 95%)
+</div>
+<div class="fourth bg-light">
+	<h4>Light</h4>
+  <p>Box, Footer, Content and Module Tile Backgrounds
+	<p>hsl(var(--hue), 50%, 90%)
+</div>
+<div class="fourth bg-tint">
+	<h4>Tint</h4>
+  <p>Makes dark text stand out
+	<p>hsla(var(--hue), 60%, 90%, 0.75)
+</div>
+<div class="fourth bg-highlight">
+	<h4>Hightlight</h4>
+	<p>hsl(var(--hue), 100%, 70%)
+</div>
+<div class="fourth bg-primary">
+  <h4>Primary</h4>
+  <p>Brand Color, Links, Actions
+  <p>hsl(var(--hue), 90%, 50%)
+</div>
+<div class="fourth bg-tone">
+	<h4>Tone</h4>
+	<p>hsl(var(--hue), 00%, 00%)
+</div>
+<div class="fourth bg-secondary">
+	<h4>secondary</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-medium-dark">
+	<h4>medium-dark</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-dark">
+	<h4>dark</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-shade">
+	<h4>shade</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-contrast">
+	<h4>contrast</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-negative">
+	<h4>negative</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-positive">
+	<h4>positive</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+<div class="fourth bg-gradient">
+	<h4>gradient</h4>
+	<p>hsl(var(--hue), 00%, 00%);
+</div>
+
+  </div><!-- End Half -->
+  
+
+
+  
+  
+  
+<div class="full">
+	<h2>Icons</h2>
+	<p>These icons are created with CSS and should adjust to the font-size.
+  <p><i class="circle-caret up"></i><code>&lt;i class="circle-caret up">&lt;/i></code>
+  <p><i class="circle-caret right"></i><code>&lt;i class="circle-caret right">&lt;/i></code>
+  <p><i class="circle-caret down"></i><code>&lt;i class="circle-caret down">&lt;/i></code>
+  <p><i class="circle-caret left"></i><code>&lt;i class="circle-caret left">&lt;/i></code>
+  <p><i class="caret up"></i><code>&lt;i class="caret up">&lt;/i></code>
+  <p><i class="caret right"></i><code>&lt;i class="caret right">&lt;/i></code>
+  <p><i class="caret down"></i><code>&lt;i class="caret down">&lt;/i></code>
+  <p><i class="caret left"></i><code>&lt;i class="caret left">&lt;/i></code>
+</div><!-- End Full -->
+
+<div class="third">
+		<p>1em
+		  <i class="circle-caret up"></i>
+		  <i class="circle-caret right"></i>
+		  <i class="circle-caret down"></i>
+		  <i class="circle-caret left"></i>
+		  <i class="caret up"></i>
+		  <i class="caret right"></i>
+		  <i class="caret down"></i>
+		  <i class="caret left"></i>
+			<i class="searchIcon"></i>
+</div>
+<div class="third">
+		<p style="font-size: 2em">2em
+		  <i class="circle-caret up"></i>
+		  <i class="circle-caret right"></i>
+		  <i class="circle-caret down"></i>
+		  <i class="circle-caret left"></i>
+		  <i class="caret up"></i>
+		  <i class="caret right"></i>
+		  <i class="caret down"></i>
+		  <i class="caret left"></i>
+			<i class="searchIcon"></i>
+</div>
+<div class="third">
+		<p style="font-size: 3em">3em
+		  <i class="circle-caret up"></i>
+		  <i class="circle-caret right"></i>
+		  <i class="circle-caret down"></i>
+		  <i class="circle-caret left"></i>
+		  <i class="caret up"></i>
+		  <i class="caret right"></i>
+		  <i class="caret down"></i>
+		  <i class="caret left"></i>
+			<i class="searchIcon"></i>
+</div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<div class="full">
+	<h3>Displaying Code</h3>
+	<ul>
+		<li>use &amp;lt; to replace &lt; for displaying code</li>
+		<li>use pre to display with no spacing issues</li>
+	</ul>
+
+		<h3>Styleguide</h3>
+		<p>For ascii art, I used 4Max and Univers from <a target="external" href="http://patorjk.com/software/taag">patorjk.com/software/taag</a></p>
+</div><!-- End Full -->
+
+<div class="half">
+	<h3>Website Types</h3>
+	<ul>
+		<li>Blog / News</li>
+		<li>E-Commerce</li>
+		<li>Social Network</li>
+		<li>Marketing</li>
+		<li>Forum</li>
+		<li>Wikipedia / Documentation</li>
+		<li>Application</li>
+		<li>video</li>
+		<li>Banking</li>
+		<li>Dashboard</li>
+	</ul>
+</div><!-- End Half -->
+
+<div class="half">
+	<h3>Templates</h3>
+	<ul>
+		<li>Homepage / Landing</li>
+		<li>Category Landing Pages</li>
+		<li>Product List / Grid Pages</li>
+		<li>Article Pages</li>
+		<li>Product Detail Pages</li>
+	</ul>
+</div><!-- End Half -->
+    </div><!-- End Article Container -->
+  
+  
+  
+  
+
+  
+  
+  
+<!-- Scripts -->
+<script src="scripts/index.js"></script>
+<script>includeHTML();</script>
+
+</body>
+</html>
